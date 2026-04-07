@@ -14,6 +14,10 @@ p {
 /* Seletor de classe — aplica a elementos com aquela classe */
 .destaque {
   background-color: yellow;
+  color: blue;
+}
+.italicoLegal {
+  font-style: italic;
 }
 .btn {
   padding: 10px 20px;
