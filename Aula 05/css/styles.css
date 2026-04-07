@@ -1,0 +1,43 @@
+/* Seletor de tag — aplica a todos os elementos */
+body {
+  color: #2e2e2e;
+}
+
+h1 {
+  color: blue;
+}
+p {
+  color: #2e2e2e;
+  font-size: 16px;
+}
+
+/* Seletor de classe — aplica a elementos com aquela classe */
+.destaque {
+  background-color: yellow;
+}
+.btn {
+  padding: 10px 20px;
+}
+
+/* Seletor de ID — aplica a um único elemento */
+#header {
+  background-color: #0066cc;
+}
+
+/* Seletor descendente */
+nav {
+  margin: 10px;
+}
+
+nav a {
+  color: #000;
+}
+
+/* Pseudo-classe hover — ao passar o mouse */
+a:hover {
+  color: #6c63ff;
+  text-decoration: none;
+}
+button:hover {
+  opacity: 0.8;
+}
