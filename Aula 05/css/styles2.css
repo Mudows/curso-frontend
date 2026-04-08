@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;600;800&family=Roboto:wght@300;400;700&display=swap');
+
+/* --- Variáveis de Design --- */
+:root {
+  --primary: #004a99;
+  --primary-dark: #003366;
+  --accent: #00d4ff;
+  --text-main: #2d3436;
+  --text-light: #636e72;
+  --bg-light: #f8f9fa;
+  --white: #ffffff;
+  --transition: all 0.3s ease;
+}
+
+/* --- Reset & Base --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: var(--text-main);
+  line-height: 1.6;
+  background-color: var(--white);
+}
+
+h1, h2, h3 {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 800;
+  color: var(--primary-dark);
+}
+
+/* --- Layout --- */
+main, #header, footer {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* --- Header & Hero Section --- */
+#header {
+  text-align: center;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: var(--white);
+  max-width: 100%; /* Hero ocupa a largura total */
+  padding: 80px 20px;
+}
+
+#header h1 {
+  color: var(--white);
+  font-size: 3rem;
+  letter-spacing: -1px;
+  margin-bottom: 10px;
+}
+
+#header .destaque {
+  font-size: 1.2rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 300;
+}
+
+#header p {
+  max-width: 600px;
+  margin: 20px auto;
+  opacity: 0.9;
+  font-size: 1.1rem;
+}
+
+/* Imagem Fluida */
+figure {
+  margin-top: 40px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --- Navegação --- */
+nav {
+  margin-top: 30px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+nav a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  border-bottom: 2px solid transparent;
+  transition: var(--transition);
+}
+
+nav a:hover {
+  border-bottom-color: var(--accent);
+  color: var(--accent);
+}
+
+/* --- Seções de Conteúdo --- */
+section {
+  padding: 60px 0;
+  border-bottom: 1px solid #eee;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Lista de Serviços */
+ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+#servicos li {
+  background: var(--bg-light);
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 4px solid var(--primary);
+  transition: var(--transition);
+}
+
+#servicos li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+/* --- Tabela Minimalista --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 0.95rem;
+}
+
+caption {
+  margin-bottom: 15px;
+  font-style: italic;
+  color: var(--text-light);
+}
+
+th {
+  background-color: var(--primary-dark);
+  color: var(--white);
+  text-align: left;
+  padding: 15px;
+}
+
+td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+tr:hover {
+  background-color: var(--bg-light);
+}
+
+/* --- Formulário Profissional --- */
+form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+fieldset {
+  border: none;
+}
+
+legend {
+  display: none; /* Estética minimalista */
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: inherit;
+  transition: border-color 0.3s;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+button {
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  transition: var(--transition);
+}
+
+button:hover {
+  background-color: var(--primary-dark);
+  letter-spacing: 1px;
+}
+
+/* --- Footer --- */
+footer {
+  text-align: center;
+  color: var(--text-light);
+  font-size: 0.8rem;
+  border-top: 1px solid #eee;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+  #header h1 { font-size: 2.2rem; }
+  nav ul { flex-direction: column; gap: 10px; }
+}

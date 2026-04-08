@@ -1,47 +1,92 @@
-/* Seletor de tag — aplica a todos os elementos */
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* --- Configurações Gerais --- */
 body {
   color: #2e2e2e;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
 }
 
-h1 {
-  color: blue;
+h1, h2, h3 {
+  font-family: 'Exo 2', sans-serif;
+  margin-bottom: 1rem;
 }
+
 p {
-  color: #2e2e2e;
   font-size: 16px;
+  color: #2e2e2e;
 }
 
-/* Seletor de classe — aplica a elementos com aquela classe */
-.destaque {
-  background-color: yellow;
-  color: blue;
-}
-.italicoLegal {
-  font-style: italic;
-}
-.btn {
-  padding: 10px 20px;
-}
-
-/* Seletor de ID — aplica a um único elemento */
+/* --- Layout e Seções --- */
 #header {
   background-color: #0066cc;
+  color: #ffffff; /* Texto branco para contrastar com o fundo azul */
+  padding: 20px;
 }
 
-/* Seletor descendente */
+#header h1 {
+  color: #ffffff; /* Ajustado de azul para branco */
+}
+
 nav {
-  margin: 10px;
+  margin: 60px 30px 30px 30px;
+}
+
+/* --- Links e Interações --- */
+a {
+  color: red;
+  text-decoration: underline dotted;
+  transition: all 0.3s ease; /* Suaviza a animação do hover */
+}
+
+a:hover {
+  color: yellow;
+  font-size: 1.1rem; /* Melhor usar rem do que px fixo no hover */
 }
 
 nav a {
   color: #000;
 }
 
-/* Pseudo-classe hover — ao passar o mouse */
-a:hover {
-  color: #6c63ff;
-  text-decoration: none;
+/* --- Componentes --- */
+.destaque {
+  background-color: yellow;
+  color: #0066cc;
+  padding: 2px 5px;
 }
+
+.italicoLegal {
+  font-style: italic;
+}
+
+button {
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
 button:hover {
   opacity: 0.8;
+}
+
+/* --- Tabelas (Estilização Solicitada) --- */
+table {
+  width: 100%;
+  border-collapse: collapse; /* Garante que as bordas fiquem unidas */
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid #000000;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
 }
