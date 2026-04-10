@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;600;800&family=Roboto:wght@300;400;700&display=swap');
+
 /* Reset básico */
 * {
   margin: 0;
@@ -72,3 +74,30 @@ section {
   padding-bottom: 20px;
   margin-bottom: 20px;
 }
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.caixa-flutuante {
+  background-color: blue;
+  font-family: 'Roboto';
+  color: beige;
+  float: left;
+  margin: 10px 10px 10px 0;
+  padding: 10px;
+  border-radius: 5px 10px 0 25px;
+  transition: 2s ease;
+}
+
+.caixa-flutuante:hover {
+  background-color: black;
+  font-family: 'Exo 2';
+  color: yellow;
+  transition: 2s ease;
+  transform: scale(1.2);
+}
+
+
