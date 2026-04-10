@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guia CSS: Float e Position</title>
+    <link rel="stylesheet" href="css/guia-style.css" />
+  </head>
+  <body>
+    <h1>Guia CSS: Float e Position</h1>
+    <h2>O dontpad é <span style="color: green">frontend20261</span></h2>
+    <p>Construído em aula — seu guia de referência pessoal.</p>
+
+    2
+
+    <!-- ==================== FLOAT ==================== -->
+    <section>
+      <h2>1. Float</h2>
+      <p>
+        Float empurra um elemento para a esquerda ou direita, permitindo que o
+        conteúdo ao redor flua em volta dele. Foi criado para imagens em textos,
+        como em revistas.
+      </p>
+
+      <!-- 1.1 Sem float -->
+      <h3>1.1 Sem Float (comportamento padrão)</h3>
+      <p>
+        Elementos em bloco ocupam a linha inteira, empilhados verticalmente.
+      </p>
+      <div class="exemplo">
+        <div class="caixa">Caixa A</div>
+        <div class="caixa caixa-b">Caixa B</div>
+        <div class="caixa caixa-c">Caixa C</div>
+      </div>
+
+      <!-- 1.2 Float left -->
+      <h3>1.2 float: left</h3>
+      <p>As caixas flutuam para a esquerda e ficam lado a lado.</p>
+      <div class="exemplo" style="overflow: hidden">
+        <div class="caixa" style="float: left">Float Left A</div>
+        <div class="caixa caixa-b" style="float: left">Float Left B</div>
+        <div class="caixa caixa-c" style="float: left">Float Left C</div>
+      </div>
+
+      <!-- 1.3 Float right -->
+      <h3>1.3 float: right</h3>
+      <p>As caixas flutuam para a direita.</p>
+      <div class="exemplo" style="overflow: hidden">
+        <div class="caixa" style="float: right">Float Right A</div>
+        <div class="caixa caixa-b" style="float: right">Float Right B</div>
+        <div class="caixa caixa-c" style="float: right">Float Right C</div>
+      </div>
+
+      <!-- 1.4 Uso legítimo: texto ao redor de imagem -->
+      <h3>1.4 Uso original: texto ao redor de imagem</h3>
+      <p>Esse é o uso correto do float — como em revistas e jornais.</p>
+      <div class="exemplo">
+        <img
+          src="./Unidades de Medida.png"
+          width="300"
+          alt="Imagem de exemplo"
+          style="
+            float: left;
+            margin-right: 16px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+          "
+        />
+        <p>
+          Este texto flui naturalmente ao redor da imagem porque ela tem float:
+          left aplicado. Esse é o uso original e ainda válido do float —
+          exatamente como em revistas e jornais impressos. Para criar colunas e
+          layouts, hoje usamos Flexbox e Grid, que são muito mais poderosos e
+          previsíveis.
+        </p>
+      </div>
+      <!-- 1.5 O problema do colapso -->
+      <h3>1.5 O Problema do Colapso</h3>
+      <p>
+        Quando todos os filhos têm float, o elemento pai perde a altura e
+        "colapsa". Veja a borda vermelha — ela deveria envolver as caixas:
+      </p>
+      <div class="exemplo">
+        <div style="border: 3px solid red; padding: 10px">
+          <!-- Pai colapsado — borda some -->
+          <div class="caixa" style="float: left; margin: 4px">Caixa A</div>
+          <div class="caixa caixa-b" style="float: left; margin: 4px">
+            Caixa B
+          </div>
+        </div>
+        <div style="clear: both"></div>
+        <p style="margin-top: 8px; font-style: italic; color: #636e72">
+          ↑ A borda vermelha colapsou — o pai não enxerga os filhos com float.
+        </p>
+      </div>
+
+      <!-- 1.6 Clearfix — a solução -->
+      <h3>1.6 Clearfix — A Solução</h3>
+      <p>
+        O clearfix usa um pseudo-elemento ::after invisível para forçar o pai a
+        reconhecer a altura dos filhos flutuantes.
+      </p>
+      <div class="exemplo">
+        <style>
+          .com-clearfix::after {
+            content: '';
+            display: table;
+            clear: both;
+          }
+        </style>
+        <div
+          class="com-clearfix"
+          style="border: 3px solid green; padding: 10px"
+        >
+          <div class="caixa" style="float: left; margin: 4px">Caixa A</div>
+          <div class="caixa caixa-b" style="float: left; margin: 4px">
+            Caixa B
+          </div>
+        </div>
+        <p style="margin-top: 8px; font-style: italic; color: #636e72">
+          ↑ Com clearfix, a borda verde envolve corretamente as caixas.
+        </p>
+      </div>
+    </section>
+    <!-- ==================== POSITION ==================== -->
+    <section>
+      <h2>2. Position</h2>
+      <p>
+        A propriedade position controla como um elemento é posicionado na
+        página. Existem 5 valores: static, relative, absolute, fixed e sticky.
+      </p>
+
+      <!-- 2.1 Static -->
+      <h3>2.1 position: static (padrão)</h3>
+      <p>
+        Todo elemento começa como static. Segue o fluxo normal da página. As
+        propriedades top, left, right e bottom não têm efeito aqui.
+      </p>
+      <div class="exemplo">
+        <div class="caixa" style="position: static">
+          Static — fluxo normal, sem deslocamento
+        </div>
+      </div>
+
+      <!-- 2.2 Relative -->
+      <h3>2.2 position: relative</h3>
+      <p>
+        Move o elemento em relação à sua própria posição original. O espaço
+        original é <strong>preservado</strong> — os elementos vizinhos não se
+        movem.
+      </p>
+      <div class="exemplo">
+        <div class="caixa">Caixa normal — não se move</div>
+        <div
+          class="caixa caixa-b"
+          style="position: relative; top: 20px; left: 30px"
+        >
+          Relative — deslocou 20px para baixo e 30px para a direita
+        </div>
+        <div class="caixa caixa-c">
+          Caixa normal — o espaço da caixa azul ainda está reservado acima
+        </div>
+      </div>
+      <!-- 2.3 Absolute -->
+      <h3>2.3 position: absolute</h3>
+      <p>
+        Remove o elemento do fluxo. Posiciona em relação ao
+        <strong>ancestral posicionado mais próximo</strong>
+        (qualquer position diferente de static). Se não encontrar nenhum, usa o
+        &lt;body&gt;.
+      </p>
+
+      <!-- Sem contexto -->
+      <h3 style="font-size: 0.85rem; color: #636e72">
+        Sem pai posicionado — usa o body como referência:
+      </h3>
+      <div class="exemplo" style="position: relative; height: 120px">
+        <div class="caixa" style="position: absolute; top: 10px; right: 10px">
+          Absolute — ancorado no canto superior direito do pai
+        </div>
+        <p>Conteúdo normal do container</p>
+      </div>
+
+      <!-- Com contexto — card com badge -->
+      <h3 style="font-size: 0.85rem; color: #636e72; margin-top: 16px">
+        Uso prático — badge em card:
+      </h3>
+      <div class="exemplo">
+        <div
+          style="
+            position: relative;
+            background: #f0f4ff;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 24px;
+            max-width: 300px;
+          "
+        >
+          <!-- Badge posicionado absolutamente no canto do card -->
+          <span
+            style="
+              position: absolute;
+              top: -12px;
+              right: -12px;
+              background: #0066cc;
+              color: white;
+              padding: 4px 12px;
+              border-radius: 20px;
+              font-size: 12px;
+              font-weight: bold;
+            "
+            >NOVO</span
+          >
+
+          <h3 style="margin-bottom: 8px">Serviço Premium</h3>
+          <p style="margin: 0">
+            O badge está posicionado absolutamente em relação ao card (que tem
+            position: relative).
+          </p>
+        </div>
+      </div>
+      <!-- 2.4 Fixed -->
+      <h3>2.4 position: fixed</h3>
+      <p>
+        Remove do fluxo e fixa na <strong>viewport</strong>
+        (a janela do navegador). Não se move ao rolar a página. Use z-index para
+        garantir que fique na frente de outros elementos.
+      </p>
+      <div class="exemplo">
+        <p>
+          O botão azul no canto inferior direito da tela é um exemplo de
+          <strong>position: fixed</strong>. Role a página — ele permanece no
+          mesmo lugar.
+        </p>
+        <p style="font-style: italic; color: #636e72">
+          Usos comuns: navbar fixa, botão "voltar ao topo", chat de suporte,
+          cookie banner.
+        </p>
+      </div>
+
+      <!-- 2.5 Sticky -->
+      <h3>2.5 position: sticky</h3>
+      <p>
+        Híbrido entre relative e fixed. Age como relative até atingir o ponto
+        definido — então gruda como fixed, mas apenas dentro do seu container
+        pai.
+      </p>
+      <div class="exemplo">
+        <p style="margin-bottom: 12px">
+          Role dentro da caixa abaixo para ver o sticky:
+        </p>
+        <div
+          style="
+            height: 200px;
+            overflow-y: scroll;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+          "
+        >
+          <div
+            style="
+              position: sticky;
+              top: 0;
+              background: #0066cc;
+              color: white;
+              padding: 10px 16px;
+              font-weight: bold;
+            "
+          >
+            📌 Cabeçalho Sticky — gruda aqui ao rolar
+          </div>
+          <div style="padding: 16px">
+            <p>Linha de conteúdo 1</p>
+            <p>Linha de conteúdo 2</p>
+            <p>Linha de conteúdo 3</p>
+            <p>Linha de conteúdo 4</p>
+            <p>Linha de conteúdo 5</p>
+            <p>Linha de conteúdo 6</p>
+            <p>Linha de conteúdo 7</p>
+            <p>Linha de conteúdo 8</p>
+          </div>
+        </div>
+        <p style="margin-top: 8px; font-style: italic; color: #636e72">
+          Usos comuns: cabeçalho de tabela, menu lateral, barra de progresso de
+          leitura.
+        </p>
+      </div>
+      <!-- Botão fixed — demonstração real -->
+      <a
+        href="#"
+        style="
+          position: fixed;
+          bottom: 30px;
+          right: 30px;
+          background: #0066cc;
+          color: white;
+          padding: 12px 20px;
+          border-radius: 50px;
+          text-decoration: none;
+          font-weight: bold;
+          font-size: 14px;
+          z-index: 999;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        "
+      >
+        ↑ Topo
+      </a>
+    </section>
+  </body>
+</html>
