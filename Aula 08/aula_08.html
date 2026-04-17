@@ -1,11 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <title>Bootstrap: Variações</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* sobrescreve as variáveis do Bootstrap */
+    :root {
+      --bs-primary: #6c63ff;
+      /* Troca o azul padrão pelo roxo da InovaWeb */
+      --bs-primary-rgb: 108, 99, 255;
+    }
+
+    img {
+      width: 30%;
+      height: auto;
+    }
+
+    .bg-primary {
+      background-color: #6c63ff !important;
+    }
+  </style>
 </head>
+
 <body>
-  
+  <div class="container my-4">
+    <h1 class="mb-4">Variações de Customização no Bootstrap</h1>
+    <h2 class="mb-4">Cores de texto</h2>
+
+    <p class="text-primary">Azul</p>
+    <p class="text-secondary">Cinza</p>
+    <p class="text-success">Verde</p>
+    <p class="text-danger">Vermelho</p>
+    <p class="text-warning">Amarelo</p>
+    <p class="text-info">Azul claro</p>
+    <p class="text-dark">Escuro</p>
+    <p class="text-muted">Suave</p>
+
+    <h2 class="mb-y">Cores de Fundo</h2>
+    <div class="bg-primary text-white p-3">Fundo azul</div>
+    <div class="bg-light p-3">Fundo claro</div>
+    <div class="bg-dark text-white p-3">Fundo escuro</div>
+    <div class="bg-warning p-3">Fundo amarelo</div>
+
+    <h1 class="my-4">Variações de Botões</h1>
+
+    <h2 class="my-4">Variações de cor padrão</h2>
+    <button class="btn btn-primary">Primary</button>
+    <button class="btn btn-secondary">Secondary</button>
+    <button class="btn btn-success">Success</button>
+    <button class="btn btn-danger">Danger</button>
+    <button class="btn btn-warning">Warning</button>
+    <button class="btn btn-info">Info</button>
+    <button class="btn btn-light">Light</button>
+    <button class="btn btn-dark">Dark</button>
+
+    <h2 class="my-4">Outline: Fundo transparente</h2>
+    <button class="btn btn-outline-primary">Outline Primary</button>
+    <button class="btn btn-outline-danger">Outline Danger</button>
+
+    <h2 class="my-4">Tamanhos</h2>
+    <button class="btn btn-primary btn-lg">Grande</button>
+    <button class="btn btn-primary">Normal</button>
+    <button class="btn btn-primary btn-sm">Pequeno</button>
+
+    <h2 class="my-4">Largura Total</h2>
+    <button class="btn btn-primary w-100">Full Width</button>
+
+    <h2 class="my-4">Usando Bootstrap Icons</h2>
+    <button class="btn btn-primary"><i class="bi bi-1-circle"></i> Enviar</button>
+
+    <h2 class="my-4">Desabilitado</h2>
+    <button class="btn btn-primary" disabled>Desabilitado</button>
+
+    <h2 class="my-4">Link com aparência de botão</h2>
+    <a href="#" class="btn btn-primary">Link como botão</a>
+
+    <h1 class="my-4">Variações de Imagens</h1>
+
+    <h2 class="my-4">Imagem Responsiva</h2>
+    <img src="img/imagem.png" class="img-fluid" alt="Descrição" />
+
+    <h2 class="my-4">Com bordas arredondadas</h2>
+    <img src="imagem.png" class="img-fluid rounded" alt="..." />
+
+    <h2 class="my-4">circular</h2>
+    <img src="imagem.png" class="img-fluid rounded-circle" alt="..." />
+
+    <h2 class="my-4">Thumbnail (borda cinza)</h2>
+    <img src="imagem.png" class="img-thumbnail" alt="..." />
+
+    <h2 class="my-4">Figura com Legenda</h2>
+    <figure class="figure">
+      <img src="imagem.png" class="figure-img img-fluid rounded" alt="..." />
+      <figcaption class="figure-caption text-center">
+        Legenda da imagem
+      </figcaption>
+    </figure>
+  </div>
+
+  <!-- Tabela básica Bootstrap -->
+  <div class="table-responsive">
+  <table class="table table-striped table-hover table-bordered table-danger table-sm">
+    <thead>
+      <tr>
+        <th>Serviço</th>
+        <th>Prazo</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Serviço A</td>
+        <td>7 dias</td>
+        <td>R$ 1.500</td>
+      </tr>
+      <tr>
+        <td>Serviço B</td>
+        <td>3 dias</td>
+        <td>R$ 1.500</td>
+      </tr>
+      <tr>
+        <td>Serviço C</td>
+        <td>10 dias</td>
+        <td>R$ 1.500</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- Variações de estilo -->
+  <table class="table table-striped"> <!-- linhas alternadas -->
+  <table class="table table-hover"> <!-- destaca ao passar o mouse -->
+  <table class="table table-bordered"> <!-- bordas em todas as células -->
+  <table class="table table-dark"> <!-- fundo escuro -->
+  <table class="table table-sm"> <!-- mais compacta -->
+
+  <!-- Responsiva — scroll horizontal em telas pequenas -->
+  <div class="table-responsive">
+  <table class="table table-striped table-hover">
+  ...
+  </table>
+  </div>
+
+  <!-- Cabeçalho colorido -->
+  <thead class="table-primary"> <!-- azul -->
+  <thead class="table-dark"> <!-- escuro -->
+  <thead class="table-light"> <!-- claro -->
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+                    crossorigin="anonymous"></script>
 </body>
+
 </html>
