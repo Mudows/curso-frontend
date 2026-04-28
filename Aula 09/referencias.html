@@ -1489,7 +1489,40 @@
 </div><!-- /container (externo) -->
 
 
-  
+  <!--
+  ═══════════════════════════════════════════════════════════════
+  MODAL SIMPLES
+  ───────────────────────────────────────────────────────────────
+  ONDE COLOCAR O MODAL NO HTML?
+    Sempre antes do /body, FORA de qualquer container, section
+    ou div de conteúdo. Por quê?
+
+    O modal usa position: fixed para ficar sobre tudo.
+    Se ele estiver dentro de um elemento com:
+      → transform: qualquer valor
+      → overflow: hidden
+      → filter: qualquer valor
+    ...o position: fixed "quebra" e o modal não fica sobre a tela.
+
+    Fora do fluxo de conteúdo = comportamento 100% previsível.
+
+  ATRIBUTOS DE ACESSIBILIDADE:
+    tabindex="-1" → remove o modal da ordem de tabulação quando fechado.
+                    Quando aberto, o Bootstrap gerencia o foco via JS.
+    aria-labelledby → conecta o modal ao id do seu título
+                       (para leitores de tela anunciarem o título ao abrir)
+    aria-hidden="true" → informa a leitores de tela que está oculto
+                          O Bootstrap alterna para false ao abrir
+
+  ESTRUTURA DO MODAL:
+    .modal           → wrapper principal (display: none por padrão)
+    .modal-dialog    → centraliza e define a largura máxima
+    .modal-content   → a caixa branca visível (border-radius, shadow)
+    .modal-header    → cabeçalho (título + botão fechar)
+    .modal-body      → conteúdo principal (padding interno)
+    .modal-footer    → rodapé (botões de ação, alinhados à direita)
+  ═══════════════════════════════════════════════════════════════
+  -->
   <div class="modal fade" id="modalSimples" tabindex="-1"
        aria-labelledby="modalSimplesLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -1623,7 +1656,43 @@
   </div><!-- /modal#modalFormulario -->
 
 
+  <!--
+  ═══════════════════════════════════════════════════════════════
+  CDN 3 — Bootstrap JavaScript (bundle)
+  ───────────────────────────────────────────────────────────────
+  POR QUE VEM ANTES DO /body E NÃO NO head?
+    Scripts bloqueiam o carregamento do HTML enquanto são baixados
+    e processados (comportamento padrão sem defer/async).
+    Colocando no FINAL do body:
+      → O HTML já foi todo processado e exibido ao usuário
+      → A página parece carregar mais rápido
+      → O JS encontra todos os elementos do DOM prontos
 
+  POR QUE "bundle" E NÃO O ARQUIVO SIMPLES?
+    bootstrap.bundle.min.js inclui DOIS arquivos em um:
+      1. Bootstrap JS — modal, carrossel, collapse, alerts, tabs...
+      2. Popper.js    — engine de posicionamento para:
+                        dropdowns, tooltips, popovers
+    Sem o bundle, dropdowns e tooltips não se posicionam corretamente.
+
+  COMPONENTES QUE DEPENDEM DESTE ARQUIVO:
+    ✗ Sem ele → Carrossel (data-bs-ride, controles prev/next)
+    ✗ Sem ele → Modal (data-bs-toggle="modal")
+    ✗ Sem ele → Alert com botão de fechar (data-bs-dismiss="alert")
+    ✗ Sem ele → Collapse (navbar-toggler, accordion)
+    ✗ Sem ele → Dropdown, Tabs, Tooltips, Popovers
+
+  RESUMO DA ORDEM DOS 3 CDNs:
+    head
+      CDN 1: Bootstrap CSS    ← estilização visual
+      CDN 2: Bootstrap Icons  ← ícones
+    /head
+    body
+      ... conteúdo ...
+      CDN 3: Bootstrap JS (bundle) ← comportamentos dinâmicos
+    /body
+  ═══════════════════════════════════════════════════════════════
+  -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
