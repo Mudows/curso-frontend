@@ -1,0 +1,121 @@
+/*
+    ═══════════════════════════════════════════════════════════════
+    CSS PRÓPRIO — personalizando o Bootstrap
+    ───────────────────────────────────────────────────────────────
+    O Bootstrap 5 usa variáveis CSS (custom properties) internamente.
+    Isso significa que podemos sobrescrever a cor primária, fontes
+    e outros valores SEM modificar o arquivo original do Bootstrap.
+
+    Como funciona?
+      O Bootstrap declara suas cores em :root assim:
+        :root { --bs-primary: #0d6efd; }
+
+      Nós declaramos novamente em :root no NOSSO CSS:
+        :root { --bs-primary: #004a99; }
+
+      Como o nosso CSS vem DEPOIS do Bootstrap no <head>,
+      nossa declaração sobrescreve a original.
+      É como substituir o valor de uma variável.
+
+    Por que isso é importante?
+      Permite personalizar o Bootstrap sem alterar seus arquivos —
+      o que é fundamental quando você usa CDN.
+
+    Nesta página:
+      Trocamos o azul padrão (#0d6efd) pelo azul da InovaWeb (#004a99).
+    ═══════════════════════════════════════════════════════════════
+    */
+    :root {
+      --bs-primary: #004a99;
+      --bs-primary-rgb: 0, 74, 153; /* versão RGB — usada em transparências */
+    }
+
+    /* ── Estilo visual das seções do guia ─────────────────────── */
+    .secao-guia {
+      border-top: 3px solid #004a99; /* linha azul separando as seções */
+      padding-top: 2rem;
+      margin-top: 3rem;
+    }
+
+    .secao-guia h2 {
+      font-size: 1.6rem;
+      color: #004a99;
+      margin-bottom: 0.25rem;
+    }
+
+    /* Parágrafo descritivo abaixo do título de cada seção */
+    .secao-guia .descricao {
+      color: #636e72;
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      border-left: 3px solid #dee2e6; /* barra cinza à esquerda */
+      padding-left: 0.75rem;
+    }
+
+    /* Rótulo de subseção — ex: "Botões Sólidos", "Outline" */
+    .label-subsecao {
+      display: inline-block;
+      background: #f0f4ff;
+      color: #004a99;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+
+    /* Caixa cinza de fundo para cada demonstração */
+    .demo-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Caixa amarela de observações e dicas */
+    .nota {
+      background: #fff8e1;
+      border-left: 4px solid #ffc107;
+      padding: 0.6rem 1rem;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.875rem;
+      color: #5a4a00;
+      margin-top: 0.75rem;
+    }
+
+    /* Cabeçalho do guia com gradiente */
+    .guia-header {
+      background: linear-gradient(135deg, #004a99, #6C63FF);
+      color: white;
+      padding: 3rem 0 2rem;
+    }
+
+    /*
+    ── Índice lateral com position: sticky ────────────────────────
+    Este é um exemplo REAL de position: sticky em uso.
+    O índice acompanha o scroll mas fica contido dentro da
+    sua coluna do grid — não ultrapassa o limite do pai.
+    Aprendemos position: sticky na Aula 6!
+    */
+    .indice {
+      position: sticky; /* gruda no topo ao rolar a página */
+      top: 20px;        /* distância do topo onde ele "gruda" */
+    }
+
+    .indice a {
+      display: block;
+      color: #004a99;
+      text-decoration: none;
+      font-size: 0.875rem;
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: background 0.2s; /* animação suave no hover */
+    }
+
+    .indice a:hover {
+      background: #f0f4ff;
+    }
+    
