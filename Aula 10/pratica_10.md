@@ -1,138 +1,195 @@
-# 🚀 Projeto InovaWeb — Página Bootstrap
+# Projeto: Sistema Bancário — Banco InovaBank
 
-A **InovaWeb** precisa de uma landing page moderna e responsiva 
-para apresentar seus serviços ao mercado. Você foi designado 
-para criar essa página usando **Bootstrap 5**.
+O **InovaBank** está expandindo seus negócios e decidiu lançar
+um serviço de banco digital. Você foi designado para criar
+o sistema de gerenciamento de contas — versão console.
 
-A página deve funcionar perfeitamente em **mobile, tablet e desktop**.
+Rode o projeto no terminal do VSCode com: `node banco.js`
+Ou utilize a extensão `Code Runner` para rodar o código diretamente no editor.
 
 ---
 
-## 📋 Objetivos de Aprendizado
+## Objetivos de Aprendizado
 
 Ao final, você dominará:
-✅ Incluir Bootstrap via CDN  
-✅ Usar o sistema de grid (container, row, col)  
-✅ Aplicar breakpoints para responsividade  
-✅ Usar componentes prontos: navbar, cards e botões  
-✅ Aplicar classes utilitárias de espaçamento e cor  
+
+- Declarar variáveis com `const` e `let`
+- Trabalhar com tipos de dados (string, number, boolean)
+- Usar template literals para formatar saídas
+- Criar condicionais com `if`, `else if` e `else`
+- Organizar código em funções reutilizáveis
+- Usar o terminal para rodar e testar JS
 
 ---
 
-## 🏗️ Estrutura da Página
+## Conta Inicial
 
-Sua página deve ter exatamente estas seções, nesta ordem:
+Toda conta começa com estas informações:
 
-| # | Seção | Componente Bootstrap |
-|---|---|---|
-| 1 | Navegação | Navbar responsiva |
-| 2 | Hero | Jumbotron com grid |
-| 3 | Serviços | Cards em grid |
-| 4 | Rodapé | Footer simples |
-
----
-
-## 🎮 Desafios do Projeto
-
-### **Desafio 1: Configuração inicial**
-
-- [ ] Crie o arquivo `inovaweb-bootstrap.html`  
-- [ ] Inclua o CSS do Bootstrap 5 no `<head>` via CDN  
-- [ ] Inclua o JS do Bootstrap antes do `</body>` via CDN  
-- [ ] Abra no Live Server e confirme que o Bootstrap carregou  
-
-> **Dica:** Digite `btn` no body e aplique a classe `btn btn-primary` 
-> em um botão. Se ele ficar azul e estilizado, o Bootstrap está funcionando.
+| Atributo      | Valor inicial     |
+|---------------|-------------------|
+| numeroConta   | '001'             |
+| titular       | Seu nome          |
+| saldo         | 1000              |
+| contaAtiva    | true              |
 
 ---
 
-### **Desafio 2: Navbar Responsiva**
+## Desafios
 
-Crie uma navbar que:
+### Desafio 1 — Exibir os dados da conta
+Crie as variáveis da conta e exiba no console
+uma apresentação formatada assim:
 
-- [ ] Tenha o nome **InovaWeb** como marca (navbar-brand)  
-- [ ] Tenha fundo azul escuro (`bg-primary` ou `bg-dark`)  
-- [ ] Tenha 3 links: Home, Serviços, Contato  
-- [ ] Colapse em um menu hambúrguer no mobile  
-- [ ] Os links fiquem alinhados à direita no desktop  
+```
+╔══════════════════════════╗
+║     BANCO INOVAWEB       ║
+╠══════════════════════════╣
+║ Conta:    001            ║
+║ Titular:  João Silva     ║
+║ Saldo:    R$ 1000.00     ║
+║ Status:   Ativa          ║
+╚══════════════════════════╝
+```
 
-> **Dica:** Use `navbar-expand-lg` para colapsar abaixo de 992px  
-> e `ms-auto` na `<ul>` para empurrar os links para a direita.
+- [ ] Variáveis criadas com `const` e `let` corretamente
+- [ ] Saldo formatado com 2 casas decimais (`.toFixed(2)`)
+- [ ] Status exibe "Ativa" se `contaAtiva` for `true`,
+      "Bloqueada" se for `false` — use um ternário
 
----
-
-### **Desafio 3: Seção Hero**
-
-Crie uma seção de destaque que:
-
-- [ ] Tenha fundo colorido ou gradiente  
-- [ ] Tenha um título grande com a classe `display-4`  
-- [ ] Tenha um subtítulo com a classe `lead`  
-- [ ] Tenha um botão de call-to-action (`btn btn-light` ou similar)  
-- [ ] O conteúdo fique centralizado (`text-center`)  
-- [ ] Tenha espaçamento interno generoso (`py-5`)  
-
-> **Dica:** Use `class="container py-5 text-center"` como wrapper  
-> e `class="bg-primary text-white"` na section para o fundo azul.
+> **Dica de IA:** Peça ao Copilot para sugerir
+> como formatar o saldo em reais com `.toFixed(2)`
 
 ---
 
-### **Desafio 4: Seção de Serviços com Cards**
+### Desafio 2 — Função depositar()
+Crie uma função que recebe um valor e realiza
+o depósito na conta.
 
-Crie uma seção com **3 cards de serviços** que:
+- [ ] Valida se o valor é maior que zero
+- [ ] Atualiza o saldo
+- [ ] Exibe mensagem de sucesso com o novo saldo
+- [ ] Exibe mensagem de erro se o valor for inválido
 
-- [ ] No mobile: fiquem empilhados (col-12)  
-- [ ] No tablet: fiquem em 2 colunas (col-md-6)  
-- [ ] No desktop: fiquem em 3 colunas lado a lado (col-lg-4)  
-- [ ] Cada card tenha: título, descrição e botão "Saiba mais"  
-- [ ] Os cards tenham a mesma altura (use `h-100` no card)  
-- [ ] Tenha espaçamento entre os cards (use `g-4` na row)  
+**Teste obrigatório — rode essas chamadas:**
+```javascript
+depositar(500);   // saldo deve ir para 1500
+depositar(-100);  // deve exibir erro
+depositar(0);     // deve exibir erro
+```
 
-**Conteúdo sugerido para os cards:**
-
-| Card | Título | Descrição |
-|---|---|---|
-| 1 | Desenvolvimento Web | Sites modernos e responsivos para sua empresa |
-| 2 | Design com IA | Layouts e imagens gerados com inteligência artificial |
-| 3 | Consultoria Digital | Estratégia de presença digital para seu negócio |
-
-> **Dica:** A estrutura base de um card Bootstrap é:  
-> `<div class="card h-100"><div class="card-body">...</div></div>`
+> **Dica de IA:** Descreva para o Copilot o que
+> a função deve fazer e peça sugestões de validação.
+> Entenda o código antes de aceitar!
 
 ---
 
-### **Desafio 5: Rodapé**
+### Desafio 3 — Função sacar()
+Crie uma função que recebe um valor e realiza
+o saque da conta.
 
-Crie um footer que:
+- [ ] Valida se o valor é maior que zero
+- [ ] Valida se há saldo suficiente
+- [ ] Valida se a conta está ativa (`contaAtiva`)
+- [ ] Atualiza o saldo se tudo estiver ok
+- [ ] Exibe mensagem clara para cada situação
 
-- [ ] Tenha fundo escuro (`bg-dark text-white`)  
-- [ ] Tenha o texto de copyright centralizado  
-- [ ] Tenha padding vertical adequado (`py-3`)  
+**Teste obrigatório — rode essas chamadas:**
+```javascript
+sacar(200);    // deve funcionar
+sacar(9999);   // saldo insuficiente
+sacar(-50);    // valor inválido
+```
+
+> **Dica:** Use `else if` para tratar cada
+> condição separadamente. Cada erro tem
+> uma mensagem diferente.
 
 ---
 
-## 🏆 Desafio Extra (para quem terminar antes)
+### Desafio 4 — Função verExtrato()
+Crie uma função que exibe um resumo da conta.
 
-Adicione **uma dessas melhorias** na sua página:
+- [ ] Exibe número da conta e titular
+- [ ] Exibe o saldo atual formatado
+- [ ] Exibe o status da conta
+- [ ] A saída deve ser organizada e legível no console
 
-- [ ] **Badge** no card mais popular: 
-`<span class="badge bg-warning text-dark">Popular</span>`  
-- [ ] **Ícones Bootstrap:** inclua a biblioteca de ícones do Bootstrap 
-e adicione um ícone em cada card  
-- [ ] **CSS customizado:** crie um `style.css` externo e sobrescreva 
-a cor primária do Bootstrap com a paleta da InovaWeb definida na Aula 3  
+**Saída esperada:**
+
+```
+══════════════════════════════
+EXTRATO DA CONTA
+══════════════════════════════
+Conta:     001
+Titular:   João Silva
+Saldo:     R$ 1300.00
+Status:    Ativa
+══════════════════════════════
+```
 
 ---
 
-## ✅ Critérios de Entrega
+### Desafio 5 — Simulação completa
+Ao final do arquivo, simule uma sequência
+de operações chamando as funções em ordem:
 
-Sua página será avaliada nos seguintes pontos:
+```javascript
+verExtrato();       // extrato inicial
+depositar(500);     // depósito
+depositar(-100);    // deve falhar
+sacar(200);         // saque
+sacar(10000);       // deve falhar
+verExtrato();       // extrato final
+```
 
-| Critério | Pontos |
+- [ ] Todas as operações executam na ordem correta
+- [ ] Os erros são tratados sem travar o programa
+- [ ] O saldo final está matematicamente correto
+
+---
+
+## Desafio Extra — Conta Bloqueada
+
+Adicione uma função `bloquearConta()` que:
+
+- [ ] Muda `contaAtiva` para `false`
+- [ ] Exibe uma mensagem de confirmação
+
+E atualize as funções `depositar()` e `sacar()` para
+verificar se a conta está ativa antes de qualquer operação.
+
+**Teste:**
+```javascript
+bloquearConta();
+depositar(100); // deve exibir: "Conta bloqueada. Operação negada."
+sacar(100);     // deve exibir: "Conta bloqueada. Operação negada."
+```
+
+---
+
+## Critérios de Entrega
+
+| Critério | |
 |---|---|
-| Bootstrap incluído corretamente via CDN | ✅ |
-| Navbar responsiva com hambúrguer no mobile | ✅ |
-| Grid com breakpoints funcionando | ✅ |
-| 3 cards de serviços com layout responsivo | ✅ |
-| Footer presente | ✅ |
-| Página abre sem erros no Live Server | ✅ |
+| Variáveis declaradas corretamente | ✅ |
+| Funções `depositar()` e `sacar()` com validações | ✅ |
+| Função `verExtrato()` formatada | ✅ |
+| Simulação completa rodando sem erros | ✅ |
+| Programa roda com `node banco.js` | ✅ |
+
+---
+
+## Dicas Gerais de IA
+
+- Use o Copilot **um desafio por vez** — não cole
+  o README inteiro
+- Quando a IA gerar código, leia antes de aceitar.
+  Se não entender uma linha, pergunte:
+  *"O que essa linha faz?"*
+- Se travar, descreva o problema em português
+  para a IA: *"Quero verificar se o valor é maior
+  que zero e se a conta está ativa"*
+- Use `console.log()` para debugar — imprima
+  variáveis no meio do código para ver o que está
+  acontecendo
