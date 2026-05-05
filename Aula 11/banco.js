@@ -1,0 +1,87 @@
+const numeroConta = 1
+let titular = 'Diego'
+let saldo = 10000
+let contaAtiva = true
+let statusConta
+
+function verExtrato() {
+  if (contaAtiva) {
+    statusConta = 'Ativa'
+  } else {
+    statusConta = 'Bloqueado'
+  }
+
+  console.log('\n====================================')
+  console.log('         EXTRATO DA CONTA')
+  console.log('====================================')
+  console.log(`Conta:   ${numeroConta}`)
+  console.log(`Titular: ${titular}`)
+  console.log('------------------------------------')
+  console.log(`Saldo: R$ ${saldo.toFixed(2)}`)
+  console.log(`Status: ${statusConta}`)
+}
+
+function depositar(valor) {
+  if(!contaAtiva) {
+    console.log('\nNão é possível realizar depósitos em uma conta bloqueada.');
+    return;
+  } else if (valor > 0) {
+    saldo += valor;
+    console.log(
+      `\nDepósito de R$ ${valor.toFixed(
+        2
+      )} realizado com sucesso! \nNovo saldo: R$ ${saldo.toFixed(2)}`
+    );
+  } else {
+    console.log(
+      '\nValor de depósito inválido. O valor deve ser maior que zero.'
+    );
+  }
+}
+
+function sacar(valor) {
+  if(!contaAtiva) {
+    console.log('\nNão é possível realizar saques em uma conta bloqueada.');
+    return;
+  } else if (valor > 0 && valor <= saldo && contaAtiva) {
+    saldo -= valor;
+    console.log(
+      `\nSaque de R$ ${valor.toFixed(
+        2
+      )} realizado com sucesso! \nNovo saldo: R$ ${saldo.toFixed(2)}`
+    );
+  } else {
+    console.log(
+      '\nValor de saque inválido. O valor deve ser maior que zero e menor ou igual ao saldo.'
+    );
+  }
+}
+
+/* const num1 = 10;
+const num2 = 10;
+
+const resultado = num1 + num2;
+const comparacao = num1 == num2;
+
+console.log(resultado); // Saída: "1020"
+console.log(comparacao); // Saída: false */
+
+function bloquearConta() {
+  contaAtiva = false;
+  console.log('\nConta bloqueada com sucesso!');
+}
+
+
+// Simulando operações aleatórias
+/* for (let nOperacoes = 0; nOperacoes < 3; nOperacoes++) {
+  const rndSelect = Math.floor(Math.random() * 2); // Gera um número aleatório entre 0 e 1
+  const valorOperacao = Math.floor(Math.random() * 500) + 1; // Gera um valor aleatório entre 1 e 500
+
+  if (rndSelect === 0) {
+    depositar(valorOperacao);
+  } else {
+    sacar(valorOperacao);
+  }
+} */
+
+  verExtrato()
