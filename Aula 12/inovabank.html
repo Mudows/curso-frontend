@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banco InovaWeb</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Banco InovaWeb</h1>
+
+  <!-- Saldo -->
+  <div class="card">
+    <p style="text-align:center; color:#636e72; margin:0;">Saldo disponível</p>
+    <div id="saldo">R$ 1000.00</div>
+    <p style="text-align:center; color:#636e72; margin:0; font-size:0.85rem;">
+      Conta 001 — João Silva
+    </p>
+  </div>
+
+  <!-- Operações -->
+  <div class="card">
+    <input type="number" id="campo-valor" placeholder="Digite o valor (ex: 200)">
+    <div style="display:flex; gap:4%;">
+      <button id="btn-depositar">⬆ Depositar</button>
+      <button id="btn-sacar">⬇ Sacar</button>
+    </div>
+    <div id="mensagem"></div>
+  </div>
+
+  <!-- Histórico -->
+  <div class="card">
+    <h3 style="margin:0 0 12px;">Últimas transações</h3>
+    <ul id="historico">
+      <li style="color:#636e72;">Nenhuma transação ainda.</li>
+    </ul>
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

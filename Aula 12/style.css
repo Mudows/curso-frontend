@@ -1,0 +1,55 @@
+ body {
+      font-family: sans-serif;
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 0 20px;
+      background: #f8f9fa;
+    }
+    h1 { color: #004a99; text-align: center; }
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    #saldo {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #004a99;
+      text-align: center;
+      margin: 8px 0;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #dee2e6;
+      border-radius: 6px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    button {
+      width: 48%;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    #btn-depositar { background: #198754; color: white; }
+    #btn-sacar     { background: #dc3545; color: white; }
+    #mensagem {
+      text-align: center;
+      padding: 8px;
+      border-radius: 6px;
+      margin-top: 8px;
+      min-height: 36px;
+    }
+    #historico { list-style: none; padding: 0; margin: 0; }
+    #historico li {
+      padding: 8px 0;
+      border-bottom: 1px solid #dee2e6;
+      font-size: 0.9rem;
+    }
