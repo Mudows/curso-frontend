@@ -1,8 +1,9 @@
 const numeroConta = 1
 let titular = 'Diego'
-let saldo = 10000
+let saldo = 0
 let contaAtiva = true
 let statusConta
+const historico = []
 
 function verExtrato() {
   if (contaAtiva) {
@@ -17,8 +18,11 @@ function verExtrato() {
   console.log(`Conta:   ${numeroConta}`)
   console.log(`Titular: ${titular}`)
   console.log('------------------------------------')
-  console.log(`Saldo: R$ ${saldo.toFixed(2)}`)
-  console.log(`Status: ${statusConta}`)
+  for(let i = 1; i < 6; i++){
+    const indiceAtual = historico.length - i
+    console.log(`${[i]}. ${historico[indiceAtual]}`)
+  }
+  
 }
 
 function depositar(valor) {
@@ -26,12 +30,13 @@ function depositar(valor) {
     console.log('\nNão é possível realizar depósitos em uma conta bloqueada.');
     return;
   } else if (valor > 0) {
-    saldo += valor;
+    saldo += valor
+    historico.push(`Depósito: R$ ${valor} | Saldo: R$ ${saldo}`)
     console.log(
       `\nDepósito de R$ ${valor.toFixed(
         2
       )} realizado com sucesso! \nNovo saldo: R$ ${saldo.toFixed(2)}`
-    );
+    )
   } else {
     console.log(
       '\nValor de depósito inválido. O valor deve ser maior que zero.'
@@ -45,11 +50,12 @@ function sacar(valor) {
     return;
   } else if (valor > 0 && valor <= saldo && contaAtiva) {
     saldo -= valor;
+    historico.push(`Saque: R$ ${valor} | Saldo: R$ ${saldo}`)
     console.log(
       `\nSaque de R$ ${valor.toFixed(
         2
       )} realizado com sucesso! \nNovo saldo: R$ ${saldo.toFixed(2)}`
-    );
+    )
   } else {
     console.log(
       '\nValor de saque inválido. O valor deve ser maior que zero e menor ou igual ao saldo.'
@@ -84,4 +90,43 @@ function bloquearConta() {
   }
 } */
 
-  verExtrato()
+function verResumo(){
+  let nDepositos = 0
+  let nSaques = 0
+  let qtdTransacoes = 0
+
+  for(let i = 0; i < historico.length; i++){
+    if( historico[i].includes("Depósito")){
+      nDepositos++
+    } else {
+      nSaques++
+    }
+    qtdTransacoes++
+  }
+
+  console.log("\n=====Resumo de Transações=====")
+  console.log(`Depósitos: ${nDepositos}`)
+  console.log(`Saques: ${nSaques}`)
+  console.log(`Total: ${qtdTransacoes} transações`)
+
+}
+
+
+  depositar(150)
+  depositar(323)
+  sacar(1000)
+  sacar(231)
+  depositar(700)
+  sacar(500)
+
+  function simularTentativasSaque(valor, maxTentativas){
+    let tentativa = 0
+    let 
+    while(tentativa < maxTentativas) {
+      if(valor < 1000000){
+
+      }
+
+      
+    }
+  }
