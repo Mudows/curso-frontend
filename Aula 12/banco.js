@@ -15,6 +15,7 @@ const btnBloquear = document.querySelector('#btn-bloquear')
 const elTotalDepositos = document.querySelector('#total-depositos')
 const elTotalSaques = document.querySelector('#total-saques')
 const elTotalTransacoes = document.querySelector('#total-transacoes')
+const elListaHistorico = document.querySelector('#lista-historico')
 
 btnDepositar.addEventListener('click', () => {
   const valor = Number(campValor.value)
@@ -28,27 +29,23 @@ btnSacar.addEventListener('click', () => {
 
 btnBloquear.addEventListener('click', bloquearConta)
 
-function verExtrato() {
-  if (contaAtiva) {
-    statusConta = 'Ativa';
-  } else {
-    statusConta = 'Bloqueado';
+function atualizarExtrato(transacao) {
+  historico.push(transacao)
+  const elListaVazia = document.querySelector('.historico-vazio')
+  if (elListaVazia) elListaVazia.remove()
+
+  const item = document.createElement('li')
+  item.textContent = transacao
+  elListaHistorico.insertBefore(item, elListaHistorico.firstChild)
+
+  while (elListaHistorico.children.length > 5) {
+    elListaHistorico.removeChild(elListaHistorico.lastChild)
   }
 
-  console.log('\n====================================');
-  console.log('         EXTRATO DA CONTA');
-  console.log('====================================');
-  console.log(`Conta:   ${numeroConta}`);
-  console.log(`Titular: ${titular}`);
-  console.log(`Saldo Atual: R$ ${saldo.toFixed(2)}`);
-  console.log('------------------------------------');
-  console.log('Histórico de Transações:');
-  console.log("(Últimas 5 transações)")
-  console.log('------------------------------------');
-  for (let i = 1; i < 6; i++) {
+  /* for (let i = 1; i < 6; i++) {
     const item = historico[historico.length - i];
-    console.log(item);
-  }
+    // console.log(item);
+  } */
 }
 
 function depositar(valor) {
@@ -57,7 +54,7 @@ function depositar(valor) {
     return;
   } else if (valor > 0) {
     saldo += valor;
-    historico.push(`Depósito: R$ ${valor.toFixed(2)} | Saldo: R$ ${saldo.toFixed(2)}`);
+    atualizarExtrato(`Depósito: R$ ${valor.toFixed(2)} | Saldo: R$ ${saldo.toFixed(2)}`);
     atualizarSaldo()
     verResumo()
     exibirMensagem(`Depósito de ${valor} realizado com sucesso!`, 'sucesso');
@@ -74,24 +71,30 @@ function sacar(valor) {
     return;
   } else if (valor > 0 && valor <= saldo && contaAtiva) {
     saldo -= valor;
-    historico.push(`Saque: R$ ${valor.toFixed(2)} | Saldo: R$ ${saldo.toFixed(2)}`);
-      atualizarSaldo()
-      verResumo()
-      exibirMensagem(`Saque de ${valor} realizado com sucesso!`, 'sucesso')
+    atualizarExtrato(`Saque: R$ ${valor.toFixed(2)} | Saldo: R$ ${saldo.toFixed(2)}`);
+    atualizarSaldo()
+    verResumo()
+    exibirMensagem(`Saque de ${valor} realizado com sucesso!`, 'sucesso')
   } else {
     exibirMensagem('\nValor de saque inválido. O valor deve ser maior que zero e menor ou igual ao saldo.')
   }
 }
 
 function bloquearConta() {
-  if(contaAtiva) {
+  const elStatusConta = document.querySelector('#status-conta')
+
+  if (contaAtiva) {
     contaAtiva = false
     exibirMensagem('\nConta bloqueada com sucesso!', 'sucesso');
     btnBloquear.textContent = '🔓 Desbloquear Conta'
+    elStatusConta.textContent = 'Bloqueada'
+    elStatusConta.className = 'status-bloqueada'
   } else {
     contaAtiva = true
     exibirMensagem('\nConta desbloqueada com sucesso!', 'sucesso');
     btnBloquear.textContent = '🔒 Bloquear Conta'
+    elStatusConta.textContent = 'Ativa'
+    elStatusConta.className = 'status-ativa'
   }
 }
 
@@ -130,7 +133,6 @@ function simularTentativasSaque(valor, maxTentativas = 5) {
   }
 }
 
-
 // Simulando operações aleatórias
 function simularOperacoes(n) {
   let nOperacoes = 0
@@ -145,9 +147,6 @@ function simularOperacoes(n) {
     nOperacoes++;
   }
 }
-
-
-
 
 function atualizarSaldo() {
   elSaldo.textContent = `R$ ${saldo.toFixed(2)}`
