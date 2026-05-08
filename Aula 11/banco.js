@@ -121,7 +121,6 @@ function verResumo(){
 
   function simularTentativasSaque(valor, maxTentativas){
     let tentativa = 0
-    let 
     while(tentativa < maxTentativas) {
       if(valor < 1000000){
 

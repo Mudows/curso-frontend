@@ -6,6 +6,28 @@ let statusConta;
 let historico = [];
 let activeSession = true;
 
+const elSaldo = document.querySelector('#saldo')
+const elMensagem = document.querySelector('#mensagem')
+const btnDepositar = document.querySelector('#btn-depositar')
+const btnSacar = document.querySelector('#btn-sacar')
+const campValor = document.querySelector('#campo-valor')
+const btnBloquear = document.querySelector('#btn-bloquear')
+const elTotalDepositos = document.querySelector('#total-depositos')
+const elTotalSaques = document.querySelector('#total-saques')
+const elTotalTransacoes = document.querySelector('#total-transacoes')
+
+btnDepositar.addEventListener('click', () => {
+  const valor = Number(campValor.value)
+  depositar(valor)
+})
+
+btnSacar.addEventListener('click', () => {
+  const valor = Number(campValor.value)
+  sacar(valor)
+})
+
+btnBloquear.addEventListener('click', bloquearConta)
+
 function verExtrato() {
   if (contaAtiva) {
     statusConta = 'Ativa';
@@ -31,18 +53,16 @@ function verExtrato() {
 
 function depositar(valor) {
   if (!contaAtiva) {
-    console.log('\nNão é possível realizar depósitos em uma conta bloqueada.');
+    exibirMensagem('\nNão é possível realizar depósitos em uma conta bloqueada.');
     return;
   } else if (valor > 0) {
     saldo += valor;
     historico.push(`Depósito: R$ ${valor.toFixed(2)} | Saldo: R$ ${saldo.toFixed(2)}`);
-    console.log(
-      `\nDepósito de R$ ${valor.toFixed(
-        2,
-      )} realizado com sucesso! \nNovo saldo: R$ ${saldo.toFixed(2)}`,
-    );
+    atualizarSaldo()
+    verResumo()
+    exibirMensagem(`Depósito de ${valor} realizado com sucesso!`, 'sucesso');
   } else {
-    console.log(
+    exibirMensagem(
       '\nValor de depósito inválido. O valor deve ser maior que zero.',
     );
   }
@@ -50,26 +70,29 @@ function depositar(valor) {
 
 function sacar(valor) {
   if (!contaAtiva) {
-    console.log('\nNão é possível realizar saques em uma conta bloqueada.');
+    exibirMensagem('\nNão é possível realizar saques em uma conta bloqueada.');
     return;
   } else if (valor > 0 && valor <= saldo && contaAtiva) {
     saldo -= valor;
     historico.push(`Saque: R$ ${valor.toFixed(2)} | Saldo: R$ ${saldo.toFixed(2)}`);
-    console.log(
-      `\nSaque de R$ ${valor.toFixed(
-        2,
-      )} realizado com sucesso! \nNovo saldo: R$ ${saldo.toFixed(2)}`,
-    );
+      atualizarSaldo()
+      verResumo()
+      exibirMensagem(`Saque de ${valor} realizado com sucesso!`, 'sucesso')
   } else {
-    console.log(
-      '\nValor de saque inválido. O valor deve ser maior que zero e menor ou igual ao saldo.',
-    );
+    exibirMensagem('\nValor de saque inválido. O valor deve ser maior que zero e menor ou igual ao saldo.')
   }
 }
 
 function bloquearConta() {
-  contaAtiva = false;
-  console.log('\nConta bloqueada com sucesso!');
+  if(contaAtiva) {
+    contaAtiva = false
+    exibirMensagem('\nConta bloqueada com sucesso!', 'sucesso');
+    btnBloquear.textContent = '🔓 Desbloquear Conta'
+  } else {
+    contaAtiva = true
+    exibirMensagem('\nConta desbloqueada com sucesso!', 'sucesso');
+    btnBloquear.textContent = '🔒 Bloquear Conta'
+  }
 }
 
 function verResumo() {
@@ -86,14 +109,27 @@ function verResumo() {
     totalTransacoes++;
   }
 
-  console.log('\n====================================');
-  console.log('         RESUMO DA CONTA');
-  console.log('====================================');
-  console.log(`Total de Depósitos: ${totalDepositos}`);
-  console.log(`Total de Saques: ${totalSaques}`);
-  console.log(`Total de Transações: ${totalTransacoes}`);
-  console.log('====================================');
+  elTotalDepositos.textContent = totalDepositos
+  elTotalSaques.textContent = totalSaques
+  elTotalTransacoes.textContent = totalTransacoes
+
 }
+
+function simularTentativasSaque(valor, maxTentativas = 5) {
+  let tentativas = 0;
+  while (tentativas < maxTentativas && valor > saldo) {
+    console.log(`Tentativa ${tentativas + 1}: R$ ${valor.toFixed(2)} - saldo insuficiente`);
+    valor = valor * 0.8 // Reduz o valor da tentativa em 20% a cada tentativa
+    tentativas++;
+  }
+
+  if (tentativas === maxTentativas) {
+    console.log(`\nTentativas esgotadas. Saque não realizado.`);
+  } else {
+    sacar(valor);
+  }
+}
+
 
 // Simulando operações aleatórias
 function simularOperacoes(n) {
@@ -110,6 +146,16 @@ function simularOperacoes(n) {
   }
 }
 
-simularOperacoes(10);
-verExtrato();
-verResumo();
+
+
+
+function atualizarSaldo() {
+  elSaldo.textContent = `R$ ${saldo.toFixed(2)}`
+}
+
+function exibirMensagem(texto, tipo) {
+  elMensagem.textContent = texto
+  elMensagem.style.display = 'block'
+  elMensagem.className = tipo === 'sucesso' ? 'msg-sucesso' : 'msg-erro'
+}
+
