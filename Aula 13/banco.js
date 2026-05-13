@@ -41,11 +41,6 @@ function atualizarExtrato(transacao) {
   while (elListaHistorico.children.length > 5) {
     elListaHistorico.removeChild(elListaHistorico.lastChild)
   }
-
-  /* for (let i = 1; i < 6; i++) {
-    const item = historico[historico.length - i];
-    // console.log(item);
-  } */
 }
 
 function depositar(valor) {
