@@ -1,25 +1,25 @@
-# DOM — Manipulando Paginas com JavaScript
+# DOM — Manipulando Páginas com JavaScript
 
 Este material cobre o DOM (Document Object Model) — o que permite ao JavaScript
-ler e modificar elementos de uma pagina HTML em tempo real.
-Cada secao tem explicacoes, exemplos e exercicios para praticar.
+ler e modificar elementos de uma página HTML em tempo real.
+Cada seção tem explicações, exemplos e exercícios para praticar.
 
 **Como usar:**
-- Crie um arquivo `index.html` com a estrutura basica do HTML5
+- Crie um arquivo `index.html` com a estrutura básica do HTML5
 - Adicione uma tag `<script>` antes do `</body>` para escrever o JavaScript
-- Abra o arquivo com o **Live Server** no VSCode para ver as mudancas em tempo real
-- Abra o **DevTools** (F12) e va na aba **Console** para ver os logs e erros
-- Use o **Copilot** para tirar duvidas — mas escreva o codigo voce mesmo
+- Abra o arquivo com o **Live Server** no VSCode para ver as mudanças em tempo real
+- Abra o **DevTools** (F12) e vá na aba **Console** para ver os logs e erros
+- Use o **Copilot** para tirar dúvidas — mas escreva o código você mesmo
 
 ---
 
-## 1. O que e o DOM
+## 1. O que é o DOM
 
-Quando o navegador carrega um arquivo HTML, ele cria uma representacao
-interna de todos os elementos da pagina — uma arvore de objetos chamada DOM.
+Quando o navegador carrega um arquivo HTML, ele cria uma representação
+interna de todos os elementos da página — uma árvore de objetos chamada DOM.
 
 O JavaScript usa o DOM como um mapa para encontrar e modificar qualquer
-elemento da pagina sem precisar recarrega-la.
+elemento da página sem precisar recarregá-la.
 
 ```
 document
@@ -32,12 +32,12 @@ document
       button
 ```
 
-O ponto de entrada para o DOM e sempre o objeto `document`,
-que representa a pagina inteira.
+O ponto de entrada para o DOM é sempre o objeto `document`,
+que representa a página inteira.
 
 ```javascript
-// document e o ponto de partida para qualquer operacao no DOM
-console.log(document.title);   // titulo da pagina
+// document é o ponto de partida para qualquer operação no DOM
+console.log(document.title);   // título da página
 console.log(document.body);    // o elemento <body> inteiro
 ```
 
@@ -45,16 +45,16 @@ console.log(document.body);    // o elemento <body> inteiro
 
 ## 2. Selecionando elementos
 
-Para modificar um elemento, primeiro voce precisa seleciona-lo.
-Os dois metodos mais usados sao `getElementById` e `querySelector`.
+Para modificar um elemento, primeiro você precisa selecioná-lo.
+Os dois métodos mais usados são `getElementById` e `querySelector`.
 
 ```html
 <!-- HTML de exemplo -->
 <h1 id="titulo">Banco InovaWeb</h1>
-<p class="descricao">Solucoes financeiras modernas</p>
+<p class="descricao">Soluções financeiras modernas</p>
 <button id="btn-depositar">Depositar</button>
 <ul id="lista-historico">
-  <li>Nenhuma transacao ainda.</li>
+  <li>Nenhuma transação ainda.</li>
 </ul>
 ```
 
@@ -72,37 +72,37 @@ const lista    = document.querySelector('#lista-historico');
 const todosOsBotoes = document.querySelectorAll('button');
 const todosOsItens  = document.querySelectorAll('li');
 
-console.log(todosOsBotoes.length); // quantos botoes ha na pagina
+console.log(todosOsBotoes.length); // quantos botões há na página
 ```
 
-`querySelector` aceita qualquer seletor CSS — e o mais versatil.
-Use `querySelectorAll` quando precisar de multiplos elementos.
+`querySelector` aceita qualquer seletor CSS — é o mais versátil.
+Use `querySelectorAll` quando precisar de múltiplos elementos.
 
-**Exercicio:**
+**Exercício:**
 Crie um HTML com: um `<h1 id="nome">`, um `<p class="info">` e dois `<button>`.
 No script, selecione cada elemento com `querySelector` e
 exiba-os no console com `console.log` para confirmar que foram encontrados.
 
 ---
 
-## 3. Lendo e alterando conteudo
+## 3. Lendo e alterando conteúdo
 
-Depois de selecionar um elemento, voce pode ler ou alterar seu conteudo.
+Depois de selecionar um elemento, você pode ler ou alterar seu conteúdo.
 
 ```javascript
 const titulo = document.querySelector('#titulo');
 
-// textContent — le ou altera o texto puro do elemento
-console.log(titulo.textContent); // le o texto atual
-titulo.textContent = 'Novo Titulo'; // altera o texto
+// textContent — lê ou altera o texto puro do elemento
+console.log(titulo.textContent); // lê o texto atual
+titulo.textContent = 'Novo Título'; // altera o texto
 
-// innerHTML — le ou altera o conteudo HTML interno
+// innerHTML — lê ou altera o conteúdo HTML interno
 // permite inserir tags HTML dentro do elemento
 titulo.innerHTML = '<strong>Banco</strong> InovaWeb';
 
-// value — le ou altera o valor de inputs e selects
+// value — lê ou altera o valor de inputs e selects
 const campo = document.querySelector('#campo-valor');
-console.log(campo.value); // le o que o usuario digitou
+console.log(campo.value); // lê o que o usuário digitou
 campo.value = '';          // limpa o campo
 campo.value = '100';       // define um valor
 ```
@@ -110,17 +110,17 @@ campo.value = '100';       // define um valor
 Prefira `textContent` quando estiver exibindo texto simples.
 Use `innerHTML` apenas quando precisar inserir HTML de fato.
 
-**Exercicio:**
+**Exercício:**
 Adicione ao HTML: `<h2 id="saldo">R$ 1000.00</h2>` e `<input id="campo" type="text">`.
 No script, altere o texto do `h2` para `R$ 1500.00` com `textContent`.
 Defina o valor do input para `'teste'` com `.value`.
-Abra no Live Server e confirme as mudancas na pagina.
+Abra no Live Server e confirme as mudanças na página.
 
 ---
 
 ## 4. Alterando estilos e classes
 
-Voce pode alterar a aparencia de um elemento diretamente via JavaScript.
+Você pode alterar a aparência de um elemento diretamente via JavaScript.
 
 ```javascript
 const titulo = document.querySelector('#titulo');
@@ -135,13 +135,13 @@ titulo.style.display = 'block'; // mostra o elemento
 // classList — a forma correta de gerenciar classes CSS
 titulo.classList.add('destaque');       // adiciona a classe
 titulo.classList.remove('destaque');    // remove a classe
-titulo.classList.toggle('ativo');       // adiciona se nao tem, remove se tem
+titulo.classList.toggle('ativo');       // adiciona se não tem, remove se tem
 console.log(titulo.classList.contains('ativo')); // true ou false
 ```
 
-Use `classList` sempre que possivel — e mais organizado e mantenivel
+Use `classList` sempre que possível — é mais organizado e manutenível
 do que aplicar estilos inline via `.style`.
-Deixe o CSS cuidar da aparencia e o JavaScript cuidar do comportamento.
+Deixe o CSS cuidar da aparência e o JavaScript cuidar do comportamento.
 
 ```css
 /* No CSS: */
@@ -150,7 +150,7 @@ Deixe o CSS cuidar da aparencia e o JavaScript cuidar do comportamento.
 ```
 
 ```javascript
-// No JavaScript — so troca a classe, o CSS cuida do visual
+// No JavaScript — só troca a classe, o CSS cuida do visual
 if (saldo > 0) {
   elSaldo.classList.add('saldo-positivo');
   elSaldo.classList.remove('saldo-negativo');
@@ -160,7 +160,7 @@ if (saldo > 0) {
 }
 ```
 
-**Exercicio:**
+**Exercício:**
 No HTML, adicione `<p id="status">Conta ativa</p>`.
 No CSS, crie duas classes: `.ativo` com `color: green` e `.bloqueado` com `color: red`.
 No script, use `classList.add` para aplicar `.ativo` ao elemento.
@@ -168,18 +168,18 @@ Depois use `classList.toggle` para alternar entre as duas classes.
 
 ---
 
-## 5. Eventos — reagindo ao usuario
+## 5. Eventos — reagindo ao usuário
 
-Eventos permitem que o JavaScript execute codigo em resposta
-a acoes do usuario, como cliques, digitacao ou envio de formularios.
+Eventos permitem que o JavaScript execute código em resposta
+a ações do usuário, como cliques, digitação ou envio de formulários.
 
 ```javascript
 const botao = document.querySelector('#btn-depositar');
 
-// addEventListener(evento, funcao)
-// e sempre desta forma que adicionamos eventos
+// addEventListener(evento, função)
+// é sempre desta forma que adicionamos eventos
 botao.addEventListener('click', function() {
-  console.log('Botao clicado!');
+  console.log('Botão clicado!');
 });
 
 // Eventos mais comuns:
@@ -202,64 +202,64 @@ campo.addEventListener('keydown', function(event) {
   }
 });
 
-// submit — formulario enviado
+// submit — formulário enviado
 const form = document.querySelector('form');
 form.addEventListener('submit', function(event) {
-  event.preventDefault(); // impede o recarregamento da pagina
-  console.log('Formulario interceptado');
+  event.preventDefault(); // impede o recarregamento da página
+  console.log('Formulário interceptado');
 });
 ```
 
-O parametro `event` dentro da funcao contem informacoes sobre o evento —
+O parâmetro `event` dentro da função contém informações sobre o evento —
 qual tecla foi pressionada, qual elemento foi clicado etc.
-`event.preventDefault()` cancela o comportamento padrao do navegador.
+`event.preventDefault()` cancela o comportamento padrão do navegador.
 
-**Exercicio:**
+**Exercício:**
 Adicione ao HTML um `<button id="btn-teste">Clique aqui</button>`
 e um `<p id="contador">0</p>`.
-No script, use `addEventListener` para que cada clique no botao
+No script, use `addEventListener` para que cada clique no botão
 incremente um contador e atualize o texto do `<p>` na tela.
 
 ---
 
 ## 6. Criando elementos dinamicamente
 
-Ate agora modificamos elementos que ja existiam no HTML.
-O `createElement` permite criar elementos novos e inseri-los na pagina.
+Até agora modificamos elementos que já existiam no HTML.
+O `createElement` permite criar elementos novos e inseri-los na página.
 
 ```javascript
-// 1. Cria o elemento na memoria — ainda nao aparece na pagina
+// 1. Cria o elemento na memória — ainda não aparece na página
 const novoItem = document.createElement('li');
 
 // 2. Configura o elemento
-novoItem.textContent = 'Deposito: R$ 500.00';
+novoItem.textContent = 'Depósito: R$ 500.00';
 novoItem.classList.add('transacao');
 
-// 3. Insere na pagina — so agora aparece
+// 3. Insere na página — só agora aparece
 const lista = document.querySelector('#lista-historico');
-lista.appendChild(novoItem); // adiciona como ULTIMO filho
+lista.appendChild(novoItem); // adiciona como ÚLTIMO filho
 
 // Para inserir como PRIMEIRO filho (mais recente primeiro):
 lista.insertBefore(novoItem, lista.firstChild);
 ```
 
-A sequencia sempre e a mesma: **cria, configura, insere.**
+A sequência sempre é a mesma: **cria, configura, insere.**
 
 **Removendo elementos:**
 
 ```javascript
 const lista = document.querySelector('#lista-historico');
 
-// remove() — remove o proprio elemento
+// remove() — remove o próprio elemento
 const placeholder = lista.querySelector('.vazio');
 if (placeholder) {
   placeholder.remove();
 }
 
-// removeChild — remove um filho especifico
-lista.removeChild(lista.lastChild); // remove o ultimo filho
+// removeChild — remove um filho específico
+lista.removeChild(lista.lastChild); // remove o último filho
 
-// Limitar a lista a no maximo 5 itens:
+// Limitar a lista a no máximo 5 itens:
 while (lista.children.length > 5) {
   lista.removeChild(lista.lastChild);
 }
@@ -268,29 +268,29 @@ while (lista.children.length > 5) {
 lista.innerHTML = '';
 ```
 
-**Exercicio:**
+**Exercício:**
 No HTML, adicione `<ul id="lista"></ul>` e um `<button id="btn-add">Adicionar item</button>`.
-No script, a cada clique no botao, crie um novo `<li>` com o texto
-`'Item numero X'` (onde X e o numero do clique) e insira no inicio da lista.
-Limite a lista a no maximo 5 itens visiveis.
+No script, a cada clique no botão, crie um novo `<li>` com o texto
+`'Item número X'` (onde X é o número do clique) e insira no início da lista.
+Limite a lista a no máximo 5 itens visíveis.
 
 ---
 
-## 7. Padrao completo — conectando HTML e JavaScript
+## 7. Padrão completo — conectando HTML e JavaScript
 
-Na pratica, o fluxo de uma funcionalidade no DOM segue este padrao:
+Na prática, o fluxo de uma funcionalidade no DOM segue este padrão:
 
 ```javascript
-// 1. Seleciona todos os elementos necessarios no inicio
+// 1. Seleciona todos os elementos necessários no início
 const elSaldo    = document.querySelector('#saldo');
 const campValor  = document.querySelector('#campo-valor');
 const btnDepositar = document.querySelector('#btn-depositar');
 const elMensagem = document.querySelector('#mensagem');
 
-// 2. Declara as variaveis de estado
+// 2. Declara as variáveis de estado
 let saldo = 1000;
 
-// 3. Cria funcoes auxiliares que atualizam o DOM
+// 3. Cria funções auxiliares que atualizam o DOM
 function atualizarSaldo() {
   elSaldo.textContent = `R$ ${saldo.toFixed(2)}`;
 }
@@ -301,18 +301,18 @@ function exibirMensagem(texto, tipo) {
   elMensagem.className = tipo === 'sucesso' ? 'msg-sucesso' : 'msg-erro';
 }
 
-// 4. Cria as funcoes de logica do sistema
+// 4. Cria as funções de lógica do sistema
 function depositar(valor) {
   if (valor <= 0) {
-    exibirMensagem('Valor invalido.', 'erro');
+    exibirMensagem('Valor inválido.', 'erro');
     return;
   }
   saldo += valor;
   atualizarSaldo();
-  exibirMensagem(`Deposito de R$ ${valor.toFixed(2)} realizado!`, 'sucesso');
+  exibirMensagem(`Depósito de R$ ${valor.toFixed(2)} realizado!`, 'sucesso');
 }
 
-// 5. Adiciona os eventos que conectam os botoes as funcoes
+// 5. Adiciona os eventos que conectam os botões às funções
 btnDepositar.addEventListener('click', function() {
   const valor = Number(campValor.value);
   depositar(valor);
@@ -321,31 +321,31 @@ btnDepositar.addEventListener('click', function() {
 });
 ```
 
-Este padrao — selecionar, declarar estado, funcoes auxiliares,
-funcoes de logica, eventos — e a base de qualquer interface web interativa.
+Este padrão — selecionar, declarar estado, funções auxiliares,
+funções de lógica, eventos — é a base de qualquer interface web interativa.
 
-**Exercicio:**
-Crie uma pagina HTML com:
+**Exercício:**
+Crie uma página HTML com:
 - Um `<h2 id="contador">0</h2>`
-- Tres botoes: `<button id="btn-mais">+</button>`,
+- Três botões: `<button id="btn-mais">+</button>`,
   `<button id="btn-menos">-</button>` e
   `<button id="btn-reset">Reset</button>`
 
 No script, implemente:
-- O contador comeca em 0
-- O botao `+` incrementa e atualiza o `<h2>`
-- O botao `-` decrementa (nao deixa passar de zero)
-- O botao Reset volta o contador a 0
-- O numero fica vermelho quando for 0 e azul quando for maior que 0
+- O contador começa em 0
+- O botão `+` incrementa e atualiza o `<h2>`
+- O botão `-` decrementa (não deixa passar de zero)
+- O botão Reset volta o contador a 0
+- O número fica vermelho quando for 0 e azul quando for maior que 0
 
 ---
 
-## Exercicio Final — Mini Interface Bancaria
+## Exercício Final — Mini Interface Bancária
 
-Crie uma pagina HTML completa que implemente uma interface
-simples para deposito e saque, usando os conceitos deste material.
+Crie uma página HTML completa que implemente uma interface
+simples para depósito e saque, usando os conceitos deste material.
 
-**HTML necessario:**
+**HTML necessário:**
 ```html
 <h2 id="saldo">R$ 1000.00</h2>
 <input type="number" id="campo-valor" placeholder="Digite o valor">
@@ -353,27 +353,27 @@ simples para deposito e saque, usando os conceitos deste material.
 <button id="btn-sacar">Sacar</button>
 <p id="mensagem"></p>
 <ul id="historico">
-  <li class="vazio">Nenhuma transacao ainda.</li>
+  <li class="vazio">Nenhuma transação ainda.</li>
 </ul>
 ```
 
 **O que implementar no script:**
 
-- [ ] Seleciona todos os elementos necessarios com `querySelector`
-- [ ] Declara `let saldo = 1000` e uma funcao `atualizarSaldo()` que atualiza o `<h2>`
+- [ ] Seleciona todos os elementos necessários com `querySelector`
+- [ ] Declara `let saldo = 1000` e uma função `atualizarSaldo()` que atualiza o `<h2>`
 - [ ] Cria `exibirMensagem(texto, tipo)` que exibe feedback na tag `<p>`
 - [ ] Cria `adicionarHistorico(texto)` que usa `createElement` e `insertBefore`
-      para adicionar itens no inicio da lista, limitando a 5 visiveis
-- [ ] O botao Depositar valida o valor, atualiza o saldo, exibe mensagem e adiciona ao historico
-- [ ] O botao Sacar valida o valor e o saldo disponivel, e faz o mesmo
-- [ ] O campo limpa e recebe o foco apos cada operacao
+      para adicionar itens no início da lista, limitando a 5 visíveis
+- [ ] O botão Depositar valida o valor, atualiza o saldo, exibe mensagem e adiciona ao histórico
+- [ ] O botão Sacar valida o valor e o saldo disponível, e faz o mesmo
+- [ ] O campo limpa e recebe o foco após cada operação
 
 ---
 
 ## Dicas de IA
 
-- Se travar no `createElement`, pergunte: "Qual a diferenca entre appendChild e insertBefore em JavaScript?"
+- Se travar no `createElement`, pergunte: "Qual a diferença entre appendChild e insertBefore em JavaScript?"
 - Use `console.log(document.querySelector('#id'))` para confirmar que um elemento foi encontrado
-- Se aparecer `null` no console ao selecionar um elemento, verifique se o id no HTML e identico ao usado no querySelector
-- Erros comuns: script carregado antes do HTML (coloque o script antes do `</body>`), id com typo, esqueceu de chamar a funcao
-- Escreva o codigo voce mesmo — use a IA para explicacoes e dicas, nao para resolver os exercicios
+- Se aparecer `null` no console ao selecionar um elemento, verifique se o id no HTML é idêntico ao usado no querySelector
+- Erros comuns: script carregado antes do HTML (coloque o script antes do `</body>`), id com typo, esqueceu de chamar a função
+- Escreva o código você mesmo — use a IA para explicações e dicas, não para resolver os exercícios
