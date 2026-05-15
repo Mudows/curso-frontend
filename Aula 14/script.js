@@ -45,10 +45,10 @@
 // Estas variáveis guardam o estado do jogo inteiro.
 // São acessadas por todas as funções abaixo.
 
-let tabuleiro;
-let naviosRestantes;
-let tentativas;
-let jogoAtivo;
+let tabuleiro = []
+let naviosRestantes
+let tentativas
+let jogoAtivo = true
 
 
 // ------------------------------------------------------------
@@ -57,7 +57,7 @@ let jogoAtivo;
 // Declare aqui os elementos do DOM que você vai usar para
 // criar/atualizar o tabuleiro, mostrar mensagens e contar tentativas.
 
-
+const elTabuleiro = document.querySelector('#tabuleiro')
 
 
 // ============================================================
@@ -69,11 +69,11 @@ let jogoAtivo;
 //
 // Para um tabuleiro 5x5, o resultado deve ser:
 //   [
+//     [0, 0, 0, 0, 0],0x1
 //     [0, 0, 0, 0, 0],
+//     [0, 0, 0, 0, 0],2x3
 //     [0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0]
+//     [0, 0, 0, 0, 0] 4x1
 //   ]
 //
 // COMO FAZER:
@@ -90,9 +90,19 @@ let jogoAtivo;
 // ============================================================
 
 function criarTabuleiro() {
+  for(let i = 0;i < 5; i++){
+    const linha = []
+    for(let j = 0; j < 5; j++){
+      linha.push(0)
+    }
+    tabuleiro.push(linha)
+  }
 
 }
 
+//criarTabuleiro()
+
+//console.log(tabuleiro)
 
 // ============================================================
 // DESAFIO 2 — posicionarNavios()
@@ -114,8 +124,15 @@ function criarTabuleiro() {
 // ============================================================
 
 function posicionarNavios() {
-
+  naviosRestantes = 3
+  tabuleiro[1][1] = 1
+  tabuleiro[3][0] = 1
+  tabuleiro[3][4] = 1
 }
+
+/* criarTabuleiro()
+posicionarNavios()
+console.log(tabuleiro) */
 
 
 // ============================================================
@@ -158,9 +175,34 @@ function posicionarNavios() {
 //   console.log('Tentativas:', tentativas);
 // ============================================================
 
-function atirar() {
+function atirar(lin, col) {
+  const pos = tabuleiro[lin][col]
+
+  if(pos === 2 || pos === 3) {
+    return console.log('posição já atingida!')
+  } else if(pos === 1) {
+    tabuleiro[lin][col] = 2
+    naviosRestantes--
+    tentativas++
+    console.log('Acertou!')
+  } else {
+    tabuleiro[lin][col] = 3
+    tentativas++
+    console.log('Água')
+  }
+
+  if(naviosRestantes === 0) console.log('Vitória!')
 
 }
+
+/* criarTabuleiro()
+posicionarNavios()
+atirar(0,0) //Água
+atirar(1,1) //Acertou!
+atirar(1,1) //posição já atingida!
+atirar(2,4) //Água
+atirar(3,0) //Acertou!
+atirar(3,4) //Acertou! Vitória */
 
 
 // ============================================================
@@ -198,6 +240,35 @@ function atirar() {
 // ============================================================
 
 function renderizarTabuleiro() {
+  elTabuleiro.innerHTML = ''
+
+  for(let linha = 0; linha < tabuleiro.length; linha++){
+    for(let coluna = 0; coluna < tabuleiro[linha].length; coluna++) {
+      const celula = document.createElement('div');
+      const valor  = tabuleiro[linha][coluna];
+
+      celula.dataset.linha  = linha;
+      celula.dataset.coluna = coluna;
+
+      if (valor === 2) {
+        celula.classList.add('acerto');
+      } else if (valor === 3) {
+        celula.classList.add('erro');
+      }
+
+      celula.addEventListener('click', function() {
+        if (!jogoAtivo) return;
+
+        const l = Number(celula.dataset.linha);
+        const c = Number(celula.dataset.coluna);
+
+        atirar(l, c);
+        renderizarTabuleiro();
+      });
+
+      elTabuleiro.appendChild(celula);
+    }
+  }
 
 }
 

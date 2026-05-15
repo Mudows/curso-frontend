@@ -54,12 +54,25 @@ function criarTabuleiro() {
 // Desafio 2
 // ------------------------------------------------------------
 
-function posicionarNavios(tabuleiro) {
-  tabuleiro[0][2] = 1;
-  tabuleiro[2][4] = 1;
-  tabuleiro[4][1] = 1;
+function numAleatorio(){
+  return Math.floor(Math.random() *5)
 }
 
+function posicionarNavios(tabuleiro) {
+  const nNavios = 3
+  for(let i = 0; i < nNavios; i++) {
+    let linha = numAleatorio()
+    let coluna = numAleatorio()
+    while(tabuleiro[linha][coluna] === 1){
+      linha = numAleatorio()
+      coluna = numAleatorio()
+    }
+    tabuleiro[linha][coluna] = 1
+  }
+}
+
+tabuleiro = criarTabuleiro()
+posicionarNavios(tabuleiro)
 
 // ------------------------------------------------------------
 // FUNCAO: atirar
@@ -135,8 +148,8 @@ function renderizarTabuleiro(tabuleiro) {
         const l = Number(celula.dataset.linha);
         const c = Number(celula.dataset.coluna);
 
-        atirar(tabuleiro, l, c);
-        renderizarTabuleiro(tabuleiro);
+        atirar(l, c);
+        renderizarTabuleiro();
       });
 
       elTabuleiro.appendChild(celula);
