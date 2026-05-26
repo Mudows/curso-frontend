@@ -17,11 +17,10 @@ function App() {
         <div className="grade">
           {equipe.map(pessoa => (
             <CartaoPerfil
-              key={pessoa.id}
               nome={pessoa.nome}
               cargo={pessoa.cargo}
               bio={pessoa.bio}
-              foto={pessoa.foto}
+              foto={pessoa.img}
               habilidades={pessoa.habilidades}
             />
           ))}
