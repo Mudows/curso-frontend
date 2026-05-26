@@ -1,0 +1,36 @@
+REACT AULA 17 - useState
+
+
+NO DOM
+1. captura o evento
+2. lê o valor
+3. seleciona o elemento
+4. atualiza o textContent
+
+No React com useState:
+
+1. declara o estado
+2. atualiza o estado
+
+Sintaxe e Funcionamento
+useState é um Hook, uma função especial do React que adiciona estado a um componente funcional.
+Para isso, devemos importar ele para o componente antes de usar. Como no exemplo abaixo.
+
+jsximport { useState } from 'react';
+
+function MeuComponente() {
+  // useState retorna um array com dois itens:
+  // 1. o valor atual do estado
+  // 2. a função para atualizar o estado
+  const [contador, setContador] = useState(0);
+  //     ↑ valor    ↑ setter      ↑ valor inicial
+
+  return (
+    <div>
+      <p>{contador}</p>
+      <button onClick={() => setContador(contador + 1)}>
+        Incrementar
+      </button>
+    </div>
+  );
+}
