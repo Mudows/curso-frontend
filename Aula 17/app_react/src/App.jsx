@@ -3,6 +3,8 @@ import './App.css';
 import CartaoPerfil from './components/CartaoPerfil.jsx';
 import Header from './components/Header.jsx';
 import funcionarios from './data/funcionarios.js';
+// import Contador from './components/ExemploUseState.jsx';
+import FormContato from './components/FormContato.jsx';
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           />
         ))}
       </div>
+      <h1>Formulário de Contato</h1>
+      <FormContato />
     </div>
   );
 }

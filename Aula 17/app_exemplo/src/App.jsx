@@ -1,6 +1,6 @@
 import CartaoPerfil from './components/CartaoPerfil';
 import FormContato from './components/FormContato';
-import equipe from './data/equipe';
+import equipe from './data/equipe.js';
 import './App.css';
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
               nome={pessoa.nome}
               cargo={pessoa.cargo}
               bio={pessoa.bio}
-              foto={pessoa.img}
+              imagem={pessoa.img}
               habilidades={pessoa.habilidades}
             />
           ))}

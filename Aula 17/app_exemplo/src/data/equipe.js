@@ -27,13 +27,6 @@ const funcionarios = [
     bio: 'Sou uma gerente de projetos experiente, especializada em liderar equipes para entregar projetos de sucesso. Com habilidades em planejamento, organização e comunicação, estou comprometida em garantir que os projetos sejam concluídos dentro do prazo e do orçamento.',
     habilidades: ['Gerenciamento de Projetos', 'Scrum', 'Kanban', 'Comunicação Eficaz', 'Liderança']
   },
-  {
-    img: 'https://placehold.co/100x100?text=CP',
-    nome: 'Carlos Pereira',
-    cargo: 'Especialista em Segurança Cibernética',
-    bio: 'Sou um especialista em segurança cibernética dedicado a proteger sistemas e dados contra ameaças digitais. Com experiência em análise de vulnerabilidades e implementação de medidas de segurança, estou comprometido em garantir a segurança das informações das empresas.',
-    habilidades: ['Segurança Cibernética', 'Análise de Vulnerabilidades', 'Firewall', 'Criptografia', 'Resposta a Incidentes']
-  }
 ]
 
 export default funcionarios
