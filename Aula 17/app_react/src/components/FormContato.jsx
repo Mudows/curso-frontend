@@ -25,6 +25,7 @@ function FormContato() {
     setEnviado(true);
   }
 
+  {/* Desafio 3: Contador de Caracteres */ }
   function handleMensagemChange(e) {
     const texto = e.target.value;
     setMensagem(texto);
@@ -74,6 +75,7 @@ function FormContato() {
           placeholder="Digite seu email"
         />
       </label>
+      {/* Desafio 2: Campo de Seleção de Serviço */ }
       <label>
         Serviço:
         <select value={servico} onChange={(e) => setServico(e.target.value)}>
@@ -87,13 +89,15 @@ function FormContato() {
         Mensagem:
         <textarea
           value={mensagem}
-          onChange={handleMensagemChange}
+          onChange={handleMensagemChange} // Consulte a linha 29 para o desafio 3 
           placeholder="Digite sua mensagem"
           maxLength={200}
         />
         {tamanhoMensagem} / 200 caracteres
       </label>
       <button type="submit">Enviar</button>
+
+      {/* Desafio 1: Botão de Reset */}
       <button
         type="button"
         onClick={() => {
