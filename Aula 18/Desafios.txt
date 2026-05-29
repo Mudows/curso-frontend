@@ -1,0 +1,5 @@
+1. Remova a propriedade "Bio" do cartão e adicione "E-Mail" e "Telefone".
+
+2. Crie um campo de busca acima da grade de cartões. Filtre os membros exibidos pelo nome enquanto o usuário digita. Use useState para o valor do campo e filtro o array equipe com .filter()* antes do .map().
+
+*HoF nova! Dá uma pesquisada antes.
